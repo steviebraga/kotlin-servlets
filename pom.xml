@@ -12,6 +12,7 @@
 		<servlet.version>3.1.0</servlet.version>
 		<sql2o.version>1.5.4</sql2o.version>
 		<h2.version>1.4.192</h2.version>
+		<freemarker.version>2.3.23</freemarker.version>
 	</properties>
 
 	<build>
@@ -91,6 +92,29 @@
 					<jbossHome>/Users/steviebraga/Development/wildfly/10</jbossHome>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.glassfish.maven.plugin</groupId>
+				<artifactId>maven-glassfish-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<glassfishDirectory>/Development/glassfish/4/glassfish</glassfishDirectory>
+					<user>admin</user>
+<!-- 					<adminPassword>admin</adminPassword> -->
+					<passwordFile>${glassfish.home}/domains/domain1/master-password</passwordFile>
+					<domain>
+						<name>eclipse-domain</name>
+						<httpPort>8080</httpPort>
+						<adminPort>4848</adminPort>
+					</domain>
+					<components>
+						<component>
+							<name>${project.artifactId}</name>
+							<artifact>${project.build.directory}/${project.artifactId}.war</artifact>
+						</component>
+					</components>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -117,6 +141,12 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>${h2.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>${freemarker.version}</version>
 		</dependency>
 	</dependencies>
 </project>

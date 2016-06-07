@@ -15,8 +15,6 @@ class InitDatabaseListener: ServletContextListener {
 		
 		val carsFile = File(this.javaClass.classLoader.getResource("cars.txt").path)
 		
-		println(carsFile)
-		
 		val carRepository: CarRepository = CarRepository()
 		
 		for (carFields in carsFile.readLines()) {
