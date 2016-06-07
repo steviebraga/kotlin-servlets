@@ -1,16 +1,22 @@
 package persistence
 
+import model.Car
+import java.io.File
 import javax.servlet.ServletContextEvent
 import javax.servlet.ServletContextListener
-import java.io.File
-import model.Car
+import javax.servlet.annotation.WebListener
 
+@WebListener
 class InitDatabaseListener: ServletContextListener {
 	
 	override fun contextInitialized(servletContextEvent: ServletContextEvent) {
-		sql2o.open().createQuery(CREATE_CAR_TABLE).executeUpdate().commit()
+		println(sql2o.dataSource.connection)
+		sql2o.beginTransaction().createQuery(CREATE_CAR_TABLE).executeUpdate().commit()
 		
-		val carsFile = File(this.javaClass.getResource("cars.txt").file)
+		val carsFile = File(this.javaClass.classLoader.getResource("cars.txt").path)
+		
+		println(carsFile)
+		
 		val carRepository: CarRepository = CarRepository()
 		
 		for (carFields in carsFile.readLines()) {

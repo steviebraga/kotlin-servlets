@@ -11,6 +11,7 @@
 		<kotlin.version>1.0.2</kotlin.version>
 		<servlet.version>3.1.0</servlet.version>
 		<sql2o.version>1.5.4</sql2o.version>
+		<h2.version>1.4.192</h2.version>
 	</properties>
 
 	<build>
@@ -45,16 +46,30 @@
 				<executions>
 					<execution>
 						<id>compile</id>
+						<phase>process-sources</phase>
 						<goals>
 							<goal>compile</goal>
 						</goals>
+						<configuration>
+							<sourceDirs>
+								<sourceDir>src/main/kotlin</sourceDir>
+								<sourceDir>src/main/resources</sourceDir>
+							</sourceDirs>
+						</configuration>
 					</execution>
 
 					<execution>
 						<id>test-compile</id>
+						<phase>process-test-sources</phase>
 						<goals>
 							<goal>test-compile</goal>
 						</goals>
+						<configuration>
+							<sourceDirs>
+								<sourceDir>src/test/kotlin</sourceDir>
+								<sourceDir>src/test/resources</sourceDir>
+							</sourceDirs>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -72,6 +87,8 @@
 				</executions>
 				<configuration>
 					<filename>kotlin-servlets.war</filename>
+					<name>kotlin-servlet-maven</name>
+					<jbossHome>/Users/steviebraga/Development/wildfly/10</jbossHome>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -90,16 +107,16 @@
 			<version>${servlet.version}</version>
 		</dependency>
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.jetbrains.kotlin</groupId> -->
-<!-- 			<artifactId>kotlin-reflect</artifactId> -->
-<!-- 			<version>${kotlin.version}</version> -->
-<!-- 		</dependency> -->
-
 		<dependency>
 			<groupId>org.sql2o</groupId>
 			<artifactId>sql2o</artifactId>
 			<version>${sql2o.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2.version}</version>
 		</dependency>
 	</dependencies>
 </project>
