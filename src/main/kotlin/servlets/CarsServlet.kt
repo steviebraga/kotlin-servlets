@@ -24,7 +24,7 @@ class CarsServlet: HttpServlet() {
 		freemarkerConfiguration.templateExceptionHandler = TemplateExceptionHandler.HTML_DEBUG_HANDLER
 		freemarkerConfiguration.logTemplateExceptions = false
 		
-		var dataModel = mapOf("cars" to carRepository.getCars(), "context" to request.servletContext.contextPath)
+		var dataModel = mapOf("cars" to carRepository.getCars())
 		var carListTemplate: Template = freemarkerConfiguration.getTemplate("car-list.ftl")
 		
 		carListTemplate.process(dataModel, response.writer)
