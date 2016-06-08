@@ -13,6 +13,10 @@
 		<sql2o.version>1.5.4</sql2o.version>
 		<h2.version>1.4.192</h2.version>
 		<freemarker.version>2.3.23</freemarker.version>
+		
+		<glassfish.plugin.version>2.1</glassfish.plugin.version>
+		
+		<glassfish.dir>/Development/glassfish/4/glassfish</glassfish.dir>
 	</properties>
 
 	<build>
@@ -96,14 +100,13 @@
 			<plugin>
 				<groupId>org.glassfish.maven.plugin</groupId>
 				<artifactId>maven-glassfish-plugin</artifactId>
-				<version>2.1</version>
+				<version>${glassfish.plugin.version}</version>
 				<configuration>
-					<glassfishDirectory>/Development/glassfish/4/glassfish</glassfishDirectory>
+					<glassfishDirectory>${glassfish.dir}</glassfishDirectory>
 					<user>admin</user>
-<!-- 					<adminPassword>admin</adminPassword> -->
-					<passwordFile>${glassfish.home}/domains/domain1/master-password</passwordFile>
+					<passwordFile>${glassfish.dir}/domains/domain1/config/domain-passwords</passwordFile>
 					<domain>
-						<name>eclipse-domain</name>
+						<name>domain1</name>
 						<httpPort>8080</httpPort>
 						<adminPort>4848</adminPort>
 					</domain>
