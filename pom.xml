@@ -84,7 +84,7 @@
 				<groupId>org.glassfish.maven.plugin</groupId>
 				<artifactId>maven-glassfish-plugin</artifactId>
 				<version>${glassfish.plugin.version}</version>
-				
+
 				<configuration>
 					<glassfishDirectory>${glassfish.dir}</glassfishDirectory>
 					<user>admin</user>
@@ -100,6 +100,17 @@
 							<artifact>${project.build.directory}/${project.artifactId}.war</artifact>
 						</component>
 					</components>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.3.9.v20160517</version>
+				<configuration>
+					<webApp>
+						<contextPath>/kotlin-servlets</contextPath>
+					</webApp>
 				</configuration>
 			</plugin>
 		</plugins>
