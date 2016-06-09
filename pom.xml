@@ -13,10 +13,11 @@
 		<sql2o.version>1.5.4</sql2o.version>
 		<h2.version>1.4.192</h2.version>
 		<freemarker.version>2.3.23</freemarker.version>
-		
+
 		<glassfish.plugin.version>2.1</glassfish.plugin.version>
-		
+
 		<glassfish.dir>/Development/glassfish/4/glassfish</glassfish.dir>
+		<glassfish.domain>domain1</glassfish.domain>
 	</properties>
 
 	<build>
@@ -80,33 +81,16 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.wildfly.plugins</groupId>
-				<artifactId>wildfly-maven-plugin</artifactId>
-				<version>1.1.0.Alpha8</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>deploy</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<filename>kotlin-servlets.war</filename>
-					<name>kotlin-servlet-maven</name>
-					<jbossHome>/Users/steviebraga/Development/wildfly/10</jbossHome>
-				</configuration>
-			</plugin>
-
-			<plugin>
 				<groupId>org.glassfish.maven.plugin</groupId>
 				<artifactId>maven-glassfish-plugin</artifactId>
 				<version>${glassfish.plugin.version}</version>
+				
 				<configuration>
 					<glassfishDirectory>${glassfish.dir}</glassfishDirectory>
 					<user>admin</user>
 					<passwordFile>${glassfish.dir}/domains/domain1/config/domain-passwords</passwordFile>
 					<domain>
-						<name>domain1</name>
+						<name>${glassfish.domain}</name>
 						<httpPort>8080</httpPort>
 						<adminPort>4848</adminPort>
 					</domain>
