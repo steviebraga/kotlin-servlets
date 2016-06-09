@@ -63,7 +63,7 @@
 							<tr>
 								<td>${car.brand}</td>
 								<td>${car.model}</td>
-								<td>${car.year?string?replace(".", "")}</td>
+								<td>${car.year?string?replace(".|,", "")}</td>
 							</tr>
 						</#list>
 			
