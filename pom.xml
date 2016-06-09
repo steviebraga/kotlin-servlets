@@ -15,9 +15,10 @@
 		<freemarker.version>2.3.23</freemarker.version>
 
 		<glassfish.plugin.version>2.1</glassfish.plugin.version>
-
 		<glassfish.dir>/Development/glassfish/4/glassfish</glassfish.dir>
 		<glassfish.domain>domain1</glassfish.domain>
+		
+		<jetty.plugin.version>9.3.9.v20160517</jetty.plugin.version>
 	</properties>
 
 	<build>
@@ -106,12 +107,30 @@
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.3.9.v20160517</version>
+				<version>${jetty.plugin.version}</version>
+				
 				<configuration>
 					<webApp>
-						<contextPath>/kotlin-servlets</contextPath>
+						<contextPath>${project.artifactId}</contextPath>
 					</webApp>
 				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>1.1.0.Alpha8</version>
+                
+                <configuration>
+					<jbossHome>/Development/wildfly/10</jbossHome>
+					<hostname>127.0.0.1</hostname>
+					<username>admin</username>
+					<password>admin</password>
+					
+					<force>true</force>
+					<name>${project.artifactId}.war</name>
+					<filename>${project.artifactId}.war</filename>
+                </configuration>
 			</plugin>
 		</plugins>
 	</build>
