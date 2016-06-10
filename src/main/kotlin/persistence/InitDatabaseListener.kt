@@ -13,8 +13,7 @@ class InitDatabaseListener: ServletContextListener {
 		println(sql2o.dataSource.connection)
 		sql2o.beginTransaction().createQuery(CREATE_CAR_TABLE).executeUpdate().commit()
 		
-//		val carsFile = File(this.javaClass.classLoader.getResource("cars.txt").path)
-		val carsFile = File(servletContextEvent.servletContext.getRealPath("/WEB-INF/classes/cars.txt"))
+		val carsFile = File(this.javaClass.classLoader.getResource("cars.txt").file)
 		
 		val carRepository: CarRepository = CarRepository()
 		

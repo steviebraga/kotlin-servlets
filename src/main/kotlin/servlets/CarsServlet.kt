@@ -1,3 +1,4 @@
+
 package servlets
 
 import freemarker.template.Configuration
@@ -18,8 +19,10 @@ class CarsServlet: HttpServlet() {
 		
 		response.contentType = "text/html"
 		
+		val templatesDir: File = File(this.javaClass.classLoader.getResource("templates").file)
+		
 		var freemarkerConfiguration: Configuration = Configuration(Configuration.VERSION_2_3_23)
-		freemarkerConfiguration.setDirectoryForTemplateLoading(File(this.javaClass.classLoader.getResource("templates").path))
+		freemarkerConfiguration.setDirectoryForTemplateLoading(templatesDir)
 		freemarkerConfiguration.defaultEncoding = "UTF-8"
 		freemarkerConfiguration.templateExceptionHandler = TemplateExceptionHandler.HTML_DEBUG_HANDLER
 		freemarkerConfiguration.logTemplateExceptions = false
